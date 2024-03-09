@@ -62,7 +62,7 @@ int main(){
 
 int findRoom(int persons[5]){
 // 이 곳에 생각 정리와 코드 구현
-// while loop를 활용해 1~4까지의 숫자를 랜덤으로 생성
+// while loop를 활용해 1~5까지의 숫자를 랜덤으로 생성
 // if 한 방의 인원 <2 방을 배정 roomno++ 
 // 채워지면 while문 종료
 // if 랜덤변수가 선택한 방이 2명이면 while문 계속
