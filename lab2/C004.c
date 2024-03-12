@@ -134,11 +134,31 @@ void findClasses(char* name, struct st_class* c[], int csize){
 int addNewClass(struct st_class* c[], int csize){
 // Caution : Don't allow the duplicate class code.
 // You must complete this function.
+/* 
+1.  메모리가 할당 된 p가 NULL일시 오류가 발생하기 때문에 memory allocation failed라는 메세지와 함께 csize를 리턴한다.
+2.  class code가 duplicate 되는 경우를 방지하기 위해 i 변수를 선언 후 i를 csize 만큼 반복하는 forloop을 만들어준다 
+    만들어 준 forloop 안에 만약 새롭게 메모리 할당된 수업코드 p->code 가 이미 할당된 수업코드 c[i]->code 랑 같을 때 
+    Class duplicated! Retry. 라는 메세지와 함께 이전에 할당된 p 메모리를 free() 함수를 통해 deallocate하고 csize를 리턴한다.
+*/
 
 	struct st_class* p = (struct st_class*)malloc(sizeof(struct st_class));
 
+     if (p == NULL) {
+        printf("memory allocation failed\n");
+        return csize;
+    }
+
 	printf(">> code number > ");
 	scanf("%d", &(p->code));
+
+    for (int i=0; i<csize; i++) {
+        if (p->code == c[i]->code ) {
+            printf("Class duplicated! Retry.");
+            free(p); 
+            return csize; 
+        }
+    }
+    
 	printf(">> class name > ");
 	scanf("%s", p->name);
 	printf(">> credits > ");
