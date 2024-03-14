@@ -176,11 +176,22 @@ void editClass(struct st_class* c[], int csize){
 	printf(">> Enter a code of class > ");
 	scanf("%d", &code);
 
-	
 	// You must complete this section.
+    /*  1. forloop을 열어 입력한 수업코드 code 가 저장된 수업 코드 c[]->code에 있는지 찾는다 
+			찾았다면 구조체 포인터를 c[i]로 덮어쓰고 break;
+        2. 같은 forloop에 입력한 수업코드 code 가 저장된 수업 코드 c[]->code에 없다면 No such class를 출력하고 메뉴로 리턴한다
+    */
+    for(int i=0; i<csize; i++) {
+        if (c[i]->code == code) {
+            p = c[i];
+            break;
+        }
+		if(c[i]->code != code) {
+			printf("No such class.\n");
+			return;
+		}
+    }
 
-
-	
 	printf("> Current: [%d] %s [credits %d - %s]\n",p->code, p->name, p->unit, kname[p->grading-1]);
 	printf("> Enter new class name > ");
 	scanf("%s", p->name);
@@ -188,9 +199,8 @@ void editClass(struct st_class* c[], int csize){
 	scanf("%d", &(p->unit));
 	printf("> Enter new grading(1:Grade, 2: P/F) > ");
 	scanf("%d", &(p->grading));
-
 	printf("> Modified.\n");
-
+	
 }
 
 
