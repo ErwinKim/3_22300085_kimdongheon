@@ -235,54 +235,82 @@ void editClass(struct st_class *c[], int csize)
 int applyMyClasses(int my[], int msize, struct st_class *c[], int csize)
 {
 	struct st_class *p;
-	int code;
-    int answer;
-	msize = 0;
+	int code; 
+	int answer; 
+	msize =0;
 
-    do {
-        printf("Enter a class code > ");
-        scanf("%d", &code);
+	do {
+		printf("Enter a class code > ");
+		scanf("%d", &code);
 
-        int found=0;
-        for (int i=0; i<csize; i++) {
-            if (c[i]->code == code) {
+		int found =0;
+		for(int i=0; i<csize; i++) {
+			if(c[i]->code == code) {
 				p = c[i];
-                int added = 0;
-                for (int j=0; j<msize; j++) {
-                    if (my[j] == code) {
-                        printf("Class code duplicated.\n");
-                        added = 1;
-						found = 2;
-                        continue;
-                    }
-                }
-                if (!added) {
-                    my[msize++] = code;
-					found = 1;
-                }
-                break;
-            }
-        }
-        if (found == 0) {
-            printf("No such class.\n");
-        }
+				found = 1;
+				break;
+			}
+		}
+		for(int j=0; j<msize; j++) {
+			if(my[j] == code) {
+			found = 2;
+			j--;
+			break;
+			}
+		}
 
-		if(found == 1) {
+		if(found==1) {
+			my[msize++] = code;
 			printf("> Current: [%d] %s [credits %d - %s]\n", p->code, p->name, p->unit, kname[p->grading - 1]);
+			
+		} else if(found ==2) {
+			printf("Class code duplicated.\n");
+		}
+		else {
+			printf("No such class.\n");
+			break;
 		}
 		printf("Add more?(1:Yes 2:No) > ");
-        scanf("%d", &answer); 
-		
-    } while (answer == 1);
+		scanf("%d", &answer);
+
+	} while (answer == 1);
 
     return msize;
 }
 
 void printMyClasses(int my[], int msize, struct st_class *c[], int csize)
 {
-	
+	// printf("My Classes:\n");
+    // for (int i = 0; i < msize; i++) {
+    //     for (int j = 0; j < csize; j++) {
+    //         if (my[i] == c[j]->code) {
+    //             printf("[%d] %s [credit %d - %s]\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+    //             break;
+    //         }
+    //     }
+    // }
+
+
 }
 
 void saveMyClass(int my[], int msize, struct st_class *c[], int csize)
 {
+	// FILE *file;
+    // file = fopen("my_classes.txt", "w");
+    // if (file == NULL) {
+    //     printf("Error opening file for writing.\n");
+    //     return;
+    // }
+    
+    // for (int i = 0; i < msize; i++) {
+    //     for (int j = 0; j < csize; j++) {
+    //         if (my[i] == c[j]->code) {
+    //             fprintf(file, "%d %s %d %s\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+    //             break;
+    //         }
+    //     }
+    // }
+    
+    // fclose(file);
+    // printf("My classes have been saved to my_classes.txt.\n");
 }
