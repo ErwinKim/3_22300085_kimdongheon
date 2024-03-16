@@ -265,8 +265,7 @@ int applyMyClasses(int my[], int msize, struct st_class *c[], int csize)
 			
 		} else if(found ==2) {
 			printf("Class code duplicated.\n");
-		}
-		else {
+		} else {
 			printf("No such class.\n");
 			break;
 		}
@@ -280,37 +279,56 @@ int applyMyClasses(int my[], int msize, struct st_class *c[], int csize)
 
 void printMyClasses(int my[], int msize, struct st_class *c[], int csize)
 {
-	// printf("My Classes:\n");
-    // for (int i = 0; i < msize; i++) {
-    //     for (int j = 0; j < csize; j++) {
-    //         if (my[i] == c[j]->code) {
-    //             printf("[%d] %s [credit %d - %s]\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
-    //             break;
-    //         }
-    //     }
-    // }
+	int credit=0;
 
-
+	for(int i=0; i<msize; i++) {
+		for(int j=0; j<csize; j++) {
+			if(my[i] == c[j]->code) {
+				printf("%d. [%d] %s [credit %d - %s]\n", i+1, c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+				credit += c[j]->unit;
+				break;
+			}
+		}	
+	}
+	printf("All: %d credits", credit);
 }
 
 void saveMyClass(int my[], int msize, struct st_class *c[], int csize)
-{
-	// FILE *file;
-    // file = fopen("my_classes.txt", "w");
-    // if (file == NULL) {
-    //     printf("Error opening file for writing.\n");
-    //     return;
-    // }
-    
-    // for (int i = 0; i < msize; i++) {
-    //     for (int j = 0; j < csize; j++) {
-    //         if (my[i] == c[j]->code) {
-    //             fprintf(file, "%d %s %d %s\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
-    //             break;
-    //         }
-    //     }
-    // }
-    
-    // fclose(file);
-    // printf("My classes have been saved to my_classes.txt.\n");
+{	
+	int credit=0;
+	int totalClasses=0;
+	int gradeCredit[2]={0};
+	int pfCredit[2]={0};
+
+	FILE *file;
+	file = fopen("my_classes.txt", "w");
+	if(file==NULL) {
+		printf("Fail to open the file.\n");
+		return;
+	}
+
+		for(int i=0; i<msize; i++) {
+			for(int j=0; j<csize; j++) {
+				if(my[i] == c[j]->code) {
+					fprintf(file, "%d. [%d] %s [credit %d - %s]\n", i+1, c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+					totalClasses = msize;
+					credit += c[j]->unit;
+
+					if (c[j]->grading == 1) {
+                    gradeCredit[0] += c[j]->unit;
+                	} else if (c[j]->grading == 2) {
+                    gradeCredit[1] += c[j]->unit;
+                	}
+					break;
+				}
+			}	
+		}
+	fprintf(file,"All: %d classes, %d credits (A+~F %d credits, P/F %d credits)", totalClasses, credit, gradeCredit[0], pfCredit[1]);
+
+	fclose(file);
+	
 }
+
+
+
+	

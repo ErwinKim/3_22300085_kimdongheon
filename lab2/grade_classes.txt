@@ -1,0 +1,4 @@
+1. [101] C [credit 3 - A+~F]
+2. [102] CodingStudio [credit 1 - P/F]
+3. [401] Capstone1 [credit 4 - A+~F]
+All: 3 classes, 8 credits (A+~F 7 credits, P/F 0 credits)
