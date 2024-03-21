@@ -211,15 +211,13 @@ void updateChannel(struct st_channel* c[], int size){
 	char newname[100];
 	int newpeople=0;
 	scanf("%d", &no);
-	for(int i=0; i<size; i++) {
-		total++;
-	}
-	if(no > total) {
+	
+	if(no > size) {
 		printf("> Wrong number.\n");
 	}
 	
 	for(int i=0; i<size; i++) {
-		if(no == i) {
+		if(no == i && no <= total) {
 			printf("> Channel Info.\n");
 			printf("[%2d] %-20s %10d peoples [%s] \n", i, c[i]->name, c[i]->count,LNAME[c[i]->level]);
 			printf("> Eneter a new name of channel > ");
@@ -228,10 +226,11 @@ void updateChannel(struct st_channel* c[], int size){
 			printf("> Eneter a new amount of peoples > ");
 			scanf("%d", &newpeople);
 			c[i-1]->count = newpeople;
+			printf("> Channel info. is modified.\n");
+
 		}
 	}
-	printf("> Channel info. is modified.\n");
-
+	
 }
 
 int deleteChannel(struct st_channel* c[], int size){
