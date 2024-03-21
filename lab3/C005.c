@@ -264,6 +264,33 @@ int deleteChannel(struct st_channel* c[], int size){
 
 
 void makeReport(struct st_channel* c[], int size){
+	printf("> All information of channels are saved into channels.txt.\n");
+	printf("> Channel statics are saved into report.txt.");
 
+	FILE *file;
+	file = fopen("report.txt", "w");
+	if(file==NULL) {
+		printf("Fail to open the file.\n");
+		return;
+	}
+
+	fprintf(file, "Channel List\n");
+
+	for(int i=0; i<size; i++){
+		fprintf(file, "[%2d] %-20s %10d peoples [%s] \n",i+1, c[i]->name, c[i]->count,LNAME[c[i]->level]);
+	}
+
+	fclose(file);
+
+	FILE *file2;
+	file2 = fopen("channels.txt", "w");
+	if(file2==NULL) {
+		printf("Fail to open the file.\n");
+		return;
+	}
+	for(int i=0; i<size; i++){
+		fprintf(file, "%s %d\n", c[i]->name, c[i]->count);
+	}
+	fclose(file2);
 
 }
