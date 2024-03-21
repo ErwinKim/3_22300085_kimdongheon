@@ -201,14 +201,25 @@ void searchChannel(struct st_channel* c[], int size){
 		printf("%d channels are found.\n", total2);
 	}
 
-
-
-
 }
 
 void updateChannel(struct st_channel* c[], int size){
 	printf("> Modify a new Channel\n");
 	printf("> Enter a number of channel > ");
+	int no;
+	int total;
+	scanf("%d", &no);
+	for(int i=0; i<size; i++) {
+		total++;
+	}
+	if(no > total) {
+		printf("Wrong number.\n");
+	}
+
+	
+	
+
+	
 
 
 }
