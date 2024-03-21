@@ -279,6 +279,35 @@ void makeReport(struct st_channel* c[], int size){
 	for(int i=0; i<size; i++){
 		fprintf(file, "[%2d] %-20s %10d peoples [%s] \n",i+1, c[i]->name, c[i]->count,LNAME[c[i]->level]);
 	}
+	fprintf(file, "Statistics of Channels\n");
+	// save channel information channel[0] = total channels, channel[1] = average, channel[2] = Top channel
+	float channel[5][3] = {0};
+	// sum of each channels
+	float sum[5]={0};
+	// max of each channels
+	int max[5]={0};
+	// top channel name
+	char topName[5][100];
+
+	for(int i=0; i<size; i++) {
+		for(int j=0; j<5; j++) {
+			if(j == c[i]->level) {
+				channel[j][0]++;
+				sum[j] += c[i]->count;
+				channel[j][1] = sum[j] / channel[j][0];
+
+				if(c[i]->count > max[j]) {
+				max[j] = c[i]->count;
+				channel[j][2] = max[j];
+				strcpy(topName[j], c[i]->name);
+				}
+			}
+		}
+	}
+
+	for(int i=0; i<5; i++) {
+		fprintf(file, "%-10s : %-2.0f channels, Average %-10.1fpeoples, Top channel: %-17s (%-7.0f peoples)\n", LNAME[i], channel[i][0], channel[i][1], topName[i], channel[i][2]);
+	}
 
 	fclose(file);
 

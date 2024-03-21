@@ -29,3 +29,9 @@ Channel List
 [28] ChrisSean                 56289 peoples [Bronze] 
 [29] Tuts+WebDesign            90165 peoples [Bronze] 
 [30] NaveedZiarab             658635 peoples [Silver] 
+Statistics of Channels
+Graphite   : 2  channels, Average 531.0     peoples, Top channel: LearnCode.academy (691     peoples)
+Opal       : 12 channels, Average 6172.9    peoples, Top channel: JoshuaFluke       (9823    peoples)
+Bronze     : 7  channels, Average 69582.4   peoples, Top channel: Tuts+WebDesign    (90165   peoples)
+Silver     : 8  channels, Average 734268.6  peoples, Top channel: Academind         (971934  peoples)
+Gold       : 1  channels, Average 1780811.0 peoples, Top channel: TraversyMedia     (1780811 peoples)
