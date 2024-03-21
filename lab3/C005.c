@@ -240,21 +240,24 @@ int deleteChannel(struct st_channel* c[], int size){
 	scanf("%d", &no);
 
 	for(int i=0; i<size; i++) {
-		if(no == i) {
+		if(no-1 == i) {
 			printf("> Channel Info.\n");
-			printf("[%2d] %-20s %10d peoples [%s] \n", i, c[i]->name, c[i]->count,LNAME[c[i]->level]);
+			printf("[%2d] %-20s %10d peoples [%s] \n", i+1, c[i]->name, c[i]->count,LNAME[c[i]->level]);
 			printf("> Do you want to delete the channel? (1:Yes 0:No) > ");
 			scanf("%d", &yesno);
 			if(yesno == 1) {
-				size--;
+				free(c[i]);
+				for(int j=i; j<size-1; j++) {
+					c[j]= c[j+1];
+				}
 				printf("Channel is deleted.\n");
+				return size-1;
 			} else {
-				return ;
+				printf("> Canceled.\n");
+				return size;
 			}
 		}
 	}
-
-
 
 	return size;
 }
