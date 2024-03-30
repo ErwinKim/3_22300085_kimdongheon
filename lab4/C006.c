@@ -169,12 +169,9 @@ void findProduct(struct shop *p[], int size)
         printf("> Result:\n");
     
         for(int i=0; i<size; i++) {
-            if(thecode == p[i]->code) {
+            if(p[i]->code == thecode) {
                 printf("[%02d] %s [%s] Total: %d\n", i+1 ,(p[i]->name), CNAME[(p[i]->category-1)], (p[i]->all));
             } 
-            else {
-                break;
-            }
         }
 
     }
@@ -195,13 +192,11 @@ void findProduct(struct shop *p[], int size)
         for(int i=0; i<size; i++) {
             for(int j=0; j<6;j++) {
                 if(thecategory == p[i]->category) {
-                    printf("[%02d] %s [%s] Total: %d\n", i+1 ,(p[i]->name), CNAME[(p[j]->category-1)], (p[i]->all));
+                    printf("[%02d] %s [%s] Total: %d\n", i+1 ,(p[i]->name), CNAME[(p[i]->category-1)], (p[i]->all));
                     break;
                 }   
             }        
         }
-    } else {
-        printf("Error!\n");
     }
 }
 
